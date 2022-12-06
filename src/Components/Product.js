@@ -23,7 +23,7 @@ function SingleProduct(props) {
   );
 }
 
-const Product = () => {
+export default function Product() {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useProductData(id === ":id" ? 1 : id);
   if (isLoading || isFetching) return <div>Loading...</div>;
@@ -33,5 +33,4 @@ const Product = () => {
       <SingleProduct details={data?.data} />
     </div>
   );
-};
-export default Product;
+}

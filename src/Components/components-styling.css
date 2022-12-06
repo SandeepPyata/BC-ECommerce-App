@@ -72,8 +72,8 @@
     width: 40%;
 }
 #single-product-description{
-    min-width:15%;
     margin-left: 5%;
+    min-width:15%;
 }
 #single-product-description>* {
     padding: 3%;
