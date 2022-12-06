@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import useProductData from "../hooks/useProductData";
 import { useParams } from "react-router-dom";
+import { cartAtom, cartItemsAtom } from "../atoms/cartAtom";
+import { useRecoilState } from "recoil";
+
 function SingleProduct(props) {
   const [imageLink, setImageLink] = useState(props.details.image);
   function handleDetails(variant) {
@@ -8,6 +11,50 @@ function SingleProduct(props) {
       setImageLink((prevDetails) => (prevDetails = variant.image));
     } else {
       setImageLink((prevDetails) => (prevDetails = variant.image));
+    }
+  }
+  const [, setNoOfItems] = useRecoilState(cartAtom);
+  const [items, setItems] = useRecoilState(cartItemsAtom);
+  let details = {
+    id: props.details.id,
+    name: props.details.name,
+    image: props.details.image,
+    price: props.details.price,
+    description: props.details.description,
+    quantity: 1,
+  };
+  const idx = items.findIndex((item) => item.id === details.id);
+  const currentItem = idx === -1 ? undefined : items[idx];
+
+  function handleAddCartItems() {
+    if (currentItem === undefined) {
+      const newCart = [...items, details];
+      setItems(newCart);
+      setNoOfItems(newCart.length);
+    } else {
+      const newCart = [
+        ...items.slice(0, idx),
+        { ...currentItem, quantity: currentItem["quantity"] + 1 },
+        ...items.slice(idx + 1),
+      ];
+      setItems(newCart);
+      setNoOfItems(newCart.length);
+    }
+  }
+
+  function handleDeleteCartItems() {
+    if (currentItem["quantity"] === 1) {
+      const newCart = [...items.slice(0, idx), ...items.slice(idx + 1)];
+      setItems(newCart);
+      setNoOfItems(newCart.length);
+    } else {
+      const newCart = [
+        ...items.slice(0, idx),
+        { ...currentItem, quantity: currentItem["quantity"] - 1 },
+        ...items.slice(idx + 1),
+      ];
+      setItems(newCart);
+      setNoOfItems(newCart.length);
     }
   }
 
@@ -33,18 +80,32 @@ function SingleProduct(props) {
         <div id="product-variants">
           <button
             id="product-variant"
-            style={{ backgroundColor: "grey" }}
+            style={{ backgroundColor: `${props.details.variants[0]?.color}` }}
             onClick={() => handleDetails(props.details.variants[0])}
           ></button>
           <button
             id="product-variant"
-            style={{ backgroundColor: "Blue" }}
+            style={{ backgroundColor: `${props.details.variants[1]?.color}` }}
             onClick={() => handleDetails(props.details.variants[1])}
           ></button>
         </div>
-        <button type="button" id="add-to-cart-btn">
-          Add to Cart
-        </button>
+        <div>
+          {!currentItem ? (
+            <button
+              onClick={handleAddCartItems}
+              type="button"
+              id="add-to-cart-btn"
+            >
+              Add to Cart
+            </button>
+          ) : (
+            <span id="cart-buttons">
+              <button onClick={handleDeleteCartItems}>-</button>
+              <p>{currentItem.quantity}</p>
+              <button onClick={handleAddCartItems}>+</button>
+            </span>
+          )}
+        </div>
       </div>
     </>
   );
