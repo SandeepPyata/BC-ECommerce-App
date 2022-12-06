@@ -1,18 +1,20 @@
 import React from "react";
-const productImageLink =
-  "https://image.shutterstock.com/image-photo/stylish-stainless-thermo-bottles-on-260nw-1914561409.jpg";
+import useProductData from "../hooks/useProductData";
+import { useParams } from "react-router-dom";
 
 function SingleProduct(props) {
+  console.log(props);
   return (
     <>
-      <img src={productImageLink} alt="Single-Product" />
+      <img src={props.details.image} alt="Single-Product" />
       <div id="single-product-description">
         <h4>{props.details.name}</h4>
         <p>{props.details.description}</p>
         <p>
-          Price : <strong>{props.details.price}</strong>
+          Price : $ <strong>{props.details.price}</strong>
         </p>
         <p>In Stock</p>
+        <p>Quantity : ${props.details.quantity}</p>
         <button type="button" id="add-to-cart-btn">
           Add to Cart
         </button>
@@ -22,15 +24,13 @@ function SingleProduct(props) {
 }
 
 const Product = () => {
-  const description = {
-    name: "Bottle",
-    description: "Bottle description",
-    price: "$ 310",
-  };
-
+  const { id } = useParams();
+  const { data, isLoading, isFetching } = useProductData(id === ":id" ? 1 : id);
+  if (isLoading || isFetching) return <div>Loading...</div>;
+  console.log("ID : ", id);
   return (
     <div id="product-page-block">
-      <SingleProduct details={description} />
+      <SingleProduct details={data?.data} />
     </div>
   );
 };

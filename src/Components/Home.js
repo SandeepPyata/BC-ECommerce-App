@@ -1,29 +1,27 @@
 import React from "react";
+import useProductsData from "../hooks/useProductsData";
 
-const productImageLink =
-  "https://image.shutterstock.com/image-photo/stylish-stainless-thermo-bottles-on-260nw-1914561409.jpg";
-
-function SingleProduct(props) {
+function SingleProduct({ Item }) {
   return (
     <div id="homepage-single-product">
-      <img src={productImageLink} alt="Product" />
+      <div id="homepage-single-product-image">
+        <img src={Item.image} alt="Product" />
+      </div>
       <div id="product-description">
-        <h4>{props.details.name}</h4>
-        <p>{props.details.description}</p>
+        <h4>{Item.name}</h4>
+        <p>{Item.description}</p>
         <p>
-          Price : <strong>{props.details.price}</strong>
+          Price : <strong>$ {Item.price}</strong>
         </p>
       </div>
     </div>
   );
 }
 
-const Home = () => {
-  const description = {
-    name: "Bottle",
-    description: "Bottle description",
-    price: "$ 310",
-  };
+export default function Home() {
+  const { data, isLoading } = useProductsData();
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div id="homepage-block">
@@ -32,14 +30,11 @@ const Home = () => {
         <button type="button">Create Product</button>
       </div>
       <div id="home-products-block">
-        <SingleProduct details={description} />
-        <SingleProduct details={description} />
-        <SingleProduct details={description} />
-        <SingleProduct details={description} />
-        <SingleProduct details={description} />
-        <SingleProduct details={description} />
+        {data?.data.map((product) => (
+          <SingleProduct key={product.id} Item={product} />
+        ))}
       </div>
     </div>
   );
-};
-export default Home;
+}
+// export default Home;

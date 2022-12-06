@@ -1,0 +1,54 @@
+{
+    "Products" : [
+        {
+            "id":1,
+            "createdAt":"2022-08-16T08:39:05.030Z",
+            "updatedAt":"2022-08-16T08:39:05.031Z",
+            "name":"Bottle",
+            "description":"No leakage",
+            "category":"Kitchen",
+            "quantity":15,
+            "image":"https://image.shutterstock.com/image-photo/stylish-stainless-thermo-bottles-on-260nw-1914561409.jpg",
+            "price":320,
+            "variants":[
+                {"color":"Grey",
+                 "image":"https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2F0ZXIlMjBib3R0bGV8ZW58MHx8MHx8&w=1000&q=80"
+                },
+                {"color":"Blue",
+                 "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCzbSXJvxUSmMN9JlQGMy3hVmv_GBkrFl1YQ&usqp=CAU"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "createdAt":"2022-08-16T08:40:32.120Z",
+            "updatedAt":"2022-08-16T08:40:32.121Z",
+            "name":"Dell Laptop | i7 | 16inch | 8GB RAM | 256 GB Storage | 500MG GRAPHIC card",
+            "description":"Powered by intel processor and blazing fast laptop coming in 3 variants",
+            "category":"Electronics",
+            "quantity":10,
+            "image":"https://s.yimg.com/uu/api/res/1.2/NVx3iijOkY6GsTUJNkGIAg--~B/aD0xMjAwO3c9MjAwMDthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/os/creatr-uploaded-images/2021-07/7e73d400-df2b-11eb-8b7d-224d93864217.cf.jpg",
+            "price":899,
+            "variants":[
+                {"color":"Grey",
+                 "image":"https://cdn.mos.cms.futurecdn.net/k9Md6R78D8aN4tbGDRWUSE.jpg"
+                },
+                {"color":"Silver",
+                "image":"https://i0.wp.com/www.ultimatepocket.com/wp-content/uploads/2021/12/dells-xps-13-9310-is-the-best-13-inch-notebook-you-can-buy-right-now.jpg"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "createdAt":"2022-08-16T09:03:47.590Z",
+            "updatedAt":"2022-08-16T09:03:47.590Z",
+            "name":"Notebooks",
+            "description":"100GSM paper quality notebooks",
+            "category":"Education",
+            "quantity":20,
+            "image":"https://image.shutterstock.com/image-photo/school-notebook-on-blue-background-260nw-753361672.jpg",
+            "price":5,
+            "variants":[]
+        }
+    ]
+}
