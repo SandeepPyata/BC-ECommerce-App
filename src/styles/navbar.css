@@ -1,0 +1,13 @@
+/* Navbar styling */
+#navbar-block {
+    display: flex;
+    padding: 0.5%;
+}
+#navbar-block>*{
+    margin-left: 1%;
+    text-decoration: none;
+    color:black;
+}
+#navbar-product{
+    font-size: 130%;
+}

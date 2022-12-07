@@ -1,0 +1,11 @@
+*{
+    /* border: 1px solid red; */
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Main block of Website */
+#website-block{
+    margin: 0 auto;
+    width: 90%;
+}

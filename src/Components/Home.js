@@ -1,26 +1,10 @@
 import React from "react";
+import "../styles/homepage.css";
 import useProductsData from "../hooks/useProductsData";
-
-function SingleProduct({ Item }) {
-  return (
-    <div id="homepage-single-product">
-      <div id="homepage-single-product-image">
-        <img src={Item.image} alt="Product" />
-      </div>
-      <div id="product-description">
-        <h4>{Item.name}</h4>
-        <p>{Item.description}</p>
-        <p>
-          Price : <strong>$ {Item.price}</strong>
-        </p>
-      </div>
-    </div>
-  );
-}
+import { HomePageProduct } from "./HomePageProduct";
 
 export default function Home() {
   const { data, isLoading } = useProductsData();
-
   if (isLoading) return <div>Loading...</div>;
 
   return (
@@ -29,12 +13,12 @@ export default function Home() {
         <h2>Products</h2>
         <button type="button">Create Product</button>
       </div>
+
       <div id="home-products-block">
         {data?.data.map((product) => (
-          <SingleProduct key={product.id} Item={product} />
+          <HomePageProduct key={product.id} Item={product} />
         ))}
       </div>
     </div>
   );
 }
-// export default Home;
